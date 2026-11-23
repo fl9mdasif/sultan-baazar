@@ -108,7 +108,12 @@ export default function DeliveryZonesPage() {
       const payload = { name: name.trim(), districts, shippingCharge: Number(shippingCharge), freeShippingThreshold: Number(freeShippingThreshold) };
       if (editingId) await updateZone({ id: editingId, data: payload }).unwrap(); else await createZone(payload).unwrap();
       setName(""); setDistricts([]); setEditingId(null); toast.success(editingId ? "Delivery zone updated" : "Delivery zone created");
-    } catch { toast.error("Could not save delivery zone"); }
+    } catch (err: unknown) {
+      const msg = typeof err === "object" && err !== null && "data" in err
+        ? (err as { data?: { message?: string } }).data?.message
+        : undefined;
+      toast.error(msg ?? "Could not save delivery zone");
+    }
   };
 
   const toggleActive = async (zone: DeliveryZone) => {

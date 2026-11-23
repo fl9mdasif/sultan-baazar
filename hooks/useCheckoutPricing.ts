@@ -19,7 +19,7 @@ export function useCheckoutPricing(subtotal: number, district: string, zones: De
       zone.districts.some((d) => d === "*" || d.toLowerCase() === "bangladesh")
     );
 
-    const resolvedZone = selectedZone ?? (district.trim() ? catchAllZone : undefined);
+    const resolvedZone = selectedZone ?? catchAllZone;
     const isDeliveryAvailable = activeZones.length === 0 || Boolean(resolvedZone);
     const threshold = resolvedZone?.freeShippingThreshold ?? envPrice(process.env.NEXT_PUBLIC_FREE_SHIPPING_THRESHOLD, 50000);
     const rate = resolvedZone?.shippingCharge ?? envPrice(process.env.NEXT_PUBLIC_SHIPPING_CHARGE, 60);
