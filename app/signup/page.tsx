@@ -95,7 +95,7 @@ export default function SignUpPage() {
                 style={{ background: "linear-gradient(160deg, #B5451B 0%, #8f3514 60%, #5c200c 100%)" }}
             >
                 <div className="absolute inset-0">
-                    <Image src="/images/jar_opening.png" alt="Sultan Bazar" fill className="object-cover opacity-20" />
+                    <Image src="/images/jar_opening.webp" alt="Sultan Bazar" fill className="object-cover opacity-20" />
                 </div>
                 <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full opacity-10 border-2 border-white" />
                 <div className="absolute -bottom-20 -left-20 w-72 h-72 rounded-full opacity-10 border-2 border-white" />
@@ -104,7 +104,7 @@ export default function SignUpPage() {
                     <Link href="/" className="inline-block">
                         <div className="relative w-48 h-12">
                             <Image
-                                src="/assets/logo-white-bg-removed.png"
+                                src="/assets/logo-white-bg-removed.webp"
                                 alt="Sultan Bazar"
                                 fill
                                 className="object-contain object-left"
@@ -152,7 +152,7 @@ export default function SignUpPage() {
                     <Link href="/" className="flex items-center gap-2 mb-6 lg:hidden">
                         <div className="relative w-32 h-10">
                             <Image
-                                src="/assets/logo-white-bg-removed.png"
+                                src="/assets/logo-white-bg-removed.webp"
                                 alt="Sultan Bazar"
                                 fill
                                 className="object-contain object-left"

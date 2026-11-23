@@ -64,7 +64,7 @@ function LoginContent() {
             >
                 {/* Background image */}
                 <div className="absolute inset-0">
-                    <Image src="/images/mosla_page.png" alt="Sultan Bazar" fill className="object-cover opacity-20" />
+                    <Image src="/images/jar_opening.webp" alt="Sultan Bazar" fill className="object-cover opacity-20" />
                 </div>
 
                 {/* Decorative circles */}
@@ -75,7 +75,7 @@ function LoginContent() {
                     <Link href="/" className="inline-block">
                         <div className="relative w-48 h-12">
                             <Image
-                                src="/assets/logo-white-bg-removed.png"
+                                src="/assets/logo-white-bg-removed.webp"
                                 alt="Sultan Bazar"
                                 fill
                                 className="object-contain object-left"
@@ -119,7 +119,7 @@ function LoginContent() {
                     <Link href="/" className="flex items-center gap-2 mb-8 lg:hidden">
                         <div className="relative w-32 h-10">
                             <Image
-                                src="/assets/logo-white-bg-removed.png"
+                                src="/assets/logo-white-bg-removed.webp"
                                 alt="Sultan Bazar"
                                 fill
                                 className="object-contain object-left"

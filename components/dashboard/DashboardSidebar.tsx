@@ -87,7 +87,7 @@ export default function DashboardSidebar() {
                 <Link href="/" className="flex items-center gap-2">
                     <div className="relative w-32 h-10">
                         <Image
-                            src="/logo.png"
+                            src="/logo.webp"
                             alt="Sultan Bazar"
                             fill
                             className="object-contain object-left"

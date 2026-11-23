@@ -7,10 +7,10 @@ export default function Hero() {
     return (
         <section className="relative w-full overflow-hidden aspect-[16/9] md:aspect-auto md:h-[600px] lg:h-[680px]">
 
-            {/* ── Mobile background (< md): hero-sm.png ── */}
+            {/* ── Mobile background (< md): hero-sm.webp ── */}
             <div className="md:hidden absolute inset-0">
                 <Image
-                    src="/assets/hero/hero-sm.png"
+                    src="/assets/hero/hero-sm.webp"
                     alt="Sultan Bazar — সুলতান বাজার"
                     fill
                     className="object-cover object-center"
@@ -26,10 +26,10 @@ export default function Hero() {
                 />
             </div>
 
-            {/* ── Desktop background (md+): hero-lg.png ── */}
+            {/* ── Desktop background (md+): hero-lg.webp ── */}
             <div className="hidden md:block absolute inset-0">
                 <Image
-                    src="/assets/hero/hero-lg.png"
+                    src="/assets/hero/hero-lg.webp"
                     alt="Sultan Bazar — সুলতান বাজার"
                     fill
                     className="object-cover object-center"

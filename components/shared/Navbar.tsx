@@ -292,7 +292,7 @@ export default function Navbar() {
                         <Link href="/" className="hidden lg:flex items-center">
                             <div className="relative w-44 h-12">
                                 <Image
-                                    src="/assets/logo-white-bg-removed.png"
+                                    src="/assets/logo-white-bg-removed.webp"
                                     alt="Sultan Bazar — সুলতান বাজার"
                                     fill
                                     className="object-contain object-left"
@@ -304,7 +304,7 @@ export default function Navbar() {
 
                     {/* ── CENTER: Brand logo (mobile) + Nav links (desktop) ── */}
                     <Link href="/" aria-label="Sultan Bazar home" className="lg:hidden relative flex-1 h-16 min-w-0">
-                        <Image src="/assets/logo-white-bg-removed.png" alt="Sultan Bazar — সুলতান বাজার" fill sizes="220px" className="object-contain" priority />
+                        <Image src="/assets/logo-white-bg-removed.webp" alt="Sultan Bazar — সুলতান বাজার" fill sizes="220px" className="object-contain" priority />
                     </Link>
 
                     <nav className="hidden lg:flex items-center gap-1">

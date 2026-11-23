@@ -86,7 +86,7 @@ export default function ContactPage() {
             {/* ── Hero Header ── */}
             <div className="relative border-b border-orange-100 overflow-hidden" style={{ minHeight: 260 }}>
                 <Image
-                    src="/hero-spices.png"
+                    src="/hero-spices.webp"
                     alt="Sultan Bazar spices contact"
                     fill
                     className="object-cover object-center"
@@ -283,7 +283,7 @@ export default function ContactPage() {
 
                 {/* ── Map/Location section ── */}
                 <div className="mt-12 rounded-3xl overflow-hidden shadow-sm relative" style={{ border: "1.5px solid #F0E6D3", height: 240 }}>
-                    <Image src="/images/Dipping-Sauces-cover.png" alt="Sultan Bazar location" fill className="object-cover object-center" />
+                    <Image src="/images/Dipping-Sauces-cover.webp" alt="Sultan Bazar location" fill className="object-cover object-center" />
                     <div className="absolute inset-0" style={{ background: "rgba(253,246,236,0.75)" }} />
                     <div className="absolute inset-0 flex items-center justify-center">
                         <div className="text-center">

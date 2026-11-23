@@ -604,7 +604,7 @@ export default function AboutPage() {
                             <div style={{ position: "relative" }}>
                                 <div className="about-story-img-wrap">
                                     <Image
-                                        src="/images/jar_opening.png"
+                        src="/images/jar_opening.webp"
                                         alt="Sultan Bazar products"
                                         fill
                                         className="object-cover object-center"

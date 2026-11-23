@@ -76,7 +76,7 @@ export default function Footer() {
                         <Link href="/" className="inline-block mb-5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white rounded-sm">
                             <div className="relative w-44 h-14">
                                 <Image
-                                    src="/assets/logo-white-bg-removed.png"
+                                    src="/assets/logo-white-bg-removed.webp"
                                     alt="Sultan Bazar"
                                     fill
                                     className="object-contain object-left"
