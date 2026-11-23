@@ -35,6 +35,7 @@ import OrderSuccessModal from "@/components/checkout/OrderSuccessModal";
 import { CodPaymentNotice } from "@/components/checkout/CodPaymentNotice";
 import { CheckoutTotals } from "@/components/checkout/CheckoutTotals";
 import { useCheckoutPricing } from "@/hooks/useCheckoutPricing";
+import { BANGLADESH_DISTRICTS } from "@/lib/bangladeshDistricts";
 
 // Redux local cart
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -174,7 +175,7 @@ function GuestShippingSection({
                         {errors.fullName && <p className="text-[10px] font-bold text-red-500 mt-1 uppercase px-1">{errors.fullName}</p>}
                     </div>
                     <div>
-                        <label className={errors.email ? errorLabelCls : labelCls}>Email *</label>
+                        <label className={errors.email ? errorLabelCls : labelCls}>Email</label>
                         <input
                             type="email"
                             className={errors.email ? errorInputCls : inputCls}
@@ -232,15 +233,18 @@ function GuestShippingSection({
                     </div>
                     <div>
                         <label className={errors.district ? errorLabelCls : labelCls}>District *</label>
-                        <input
-                            type="text"
-                            className={errors.district ? errorInputCls : inputCls}
-                            placeholder="e.g. Dhaka"
+                        <select
+                            className={`${errors.district ? errorInputCls : inputCls} bg-white`}
                             value={form.district}
                             onChange={(e) =>
                                 onChange({ ...form, district: e.target.value })
                             }
-                        />
+                        >
+                            <option value="">Select district</option>
+                            {BANGLADESH_DISTRICTS.map((d) => (
+                                <option key={d} value={d}>{d}</option>
+                            ))}
+                        </select>
                         {errors.district && <p className="text-[10px] font-bold text-red-500 mt-1 uppercase px-1">{errors.district}</p>}
                     </div>
                     <div>
@@ -315,6 +319,16 @@ function CheckoutPageContent() {
         district: "",
         postalCode: "",
     });
+    // Inline form for logged-in users with no saved addresses
+    const [loggedInForm, setLoggedInForm] = useState<GuestShippingForm>({
+        fullName: "",
+        email: "",
+        phone: "",
+        address: "",
+        city: "",
+        district: "",
+        postalCode: "",
+    });
     const [errors, setErrors] = useState<Record<string, string>>({});
     const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
     const [confirmedTotal, setConfirmedTotal] = useState(0);
@@ -326,9 +340,7 @@ function CheckoutPageContent() {
     const validateGuestForm = () => {
         const newErrors: Record<string, string> = {};
         if (!guestForm.fullName.trim()) newErrors.fullName = "Full name is required";
-        if (!guestForm.email.trim()) {
-            newErrors.email = "Email is required";
-        } else if (!/\S+@\S+\.\S+/.test(guestForm.email)) {
+        if (guestForm.email.trim() && !/\S+@\S+\.\S+/.test(guestForm.email)) {
             newErrors.email = "Invalid email format";
         }
         if (!guestForm.phone.trim()) newErrors.phone = "Phone number is required";
@@ -336,6 +348,17 @@ function CheckoutPageContent() {
         if (!guestForm.city.trim()) newErrors.city = "City is required";
         if (!guestForm.district.trim()) newErrors.district = "District is required";
 
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const validateLoggedInForm = () => {
+        const newErrors: Record<string, string> = {};
+        if (!loggedInForm.fullName.trim()) newErrors.fullName = "Full name is required";
+        if (!loggedInForm.phone.trim()) newErrors.phone = "Phone number is required";
+        if (!loggedInForm.address.trim()) newErrors.address = "Street address is required";
+        if (!loggedInForm.city.trim()) newErrors.city = "City is required";
+        if (!loggedInForm.district.trim()) newErrors.district = "District is required";
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -415,7 +438,9 @@ function CheckoutPageContent() {
     }, [checkoutItems]);
 
     const activeDistrict = userLoggedIn
-        ? addresses.find((address) => address._id === selectedAddressId)?.district ?? ""
+        ? (addresses.length === 0
+            ? loggedInForm.district
+            : addresses.find((address) => address._id === selectedAddressId)?.district ?? "")
         : guestForm.district;
     const deliveryZones = ((deliveryZonesData as unknown as { data?: typeof deliveryZonesData })?.data ?? deliveryZonesData ?? []);
     const { isDeliveryAvailable, shippingCharge, total } = useCheckoutPricing(subtotal, activeDistrict, deliveryZones, couponDiscount);
@@ -431,23 +456,41 @@ function CheckoutPageContent() {
 
     // ── Place order (logged-in user) ──────────────────────────────────
     const handlePlaceOrderLoggedIn = async () => {
-        const selectedAddress = addresses.find((a) => a._id === selectedAddressId);
-        if (!selectedAddress) {
-            toast.error("Please select a shipping address");
-            return;
+        let shippingAddress;
+        if (addresses.length === 0) {
+            if (!validateLoggedInForm()) {
+                toast.error("Please fill in the shipping information");
+                return;
+            }
+            shippingAddress = {
+                fullName: loggedInForm.fullName,
+                phone: loggedInForm.phone,
+                address: loggedInForm.address,
+                city: loggedInForm.city,
+                district: loggedInForm.district,
+                postalCode: loggedInForm.postalCode || "0000",
+                country: "Bangladesh",
+            };
+        } else {
+            const selectedAddress = addresses.find((a) => a._id === selectedAddressId);
+            if (!selectedAddress) {
+                toast.error("Please select a shipping address");
+                return;
+            }
+            shippingAddress = {
+                fullName: selectedAddress.fullName,
+                phone: selectedAddress.phone,
+                address: selectedAddress.address,
+                city: selectedAddress.city,
+                district: selectedAddress.district,
+                postalCode: selectedAddress.postalCode || "0000",
+                country: selectedAddress.country || "Bangladesh",
+            };
         }
 
         try {
             const orderData = {
-                shippingAddress: {
-                    fullName: selectedAddress.fullName,
-                    phone: selectedAddress.phone,
-                    address: selectedAddress.address,
-                    city: selectedAddress.city,
-                    district: selectedAddress.district,
-                    postalCode: selectedAddress.postalCode || "0000",
-                    country: selectedAddress.country || "Bangladesh",
-                },
+                shippingAddress,
                 paymentMethod: "cod",
                 paymentStatus: "pending",
                 items: checkoutItems.map((item) => ({
@@ -675,19 +718,12 @@ function CheckoutPageContent() {
                                         </div>
                                     ))}
                                     {addresses.length === 0 && (
-                                        <div className="col-span-full py-12 text-center bg-orange-50/20 border-2 border-dashed border-orange-100 rounded-[2rem]">
-                                            <MapPin className="w-12 h-12 text-[#B5451B] opacity-20 mx-auto mb-4" />
-                                            <p className="font-bold text-gray-400">No saved addresses found</p>
-                                            <Button
-                                                onClick={() => {
-                                                    setAddressToEdit(undefined);
-                                                    setIsAddressModalOpen(true);
-                                                }}
-                                                variant="link"
-                                                className="text-[#B5451B] mt-2 font-bold cursor-pointer"
-                                            >
-                                                Add your first address
-                                            </Button>
+                                        <div className="col-span-full">
+                                            <GuestShippingSection
+                                                form={loggedInForm}
+                                                onChange={(f) => { setLoggedInForm(f); setErrors({}); }}
+                                                errors={errors}
+                                            />
                                         </div>
                                     )}
                                 </div>
