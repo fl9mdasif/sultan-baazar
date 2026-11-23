@@ -7,9 +7,9 @@ import StoreProvider from "@/redux/StoreProvider";
 import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://sultanbazar.com.bd"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://sultanbaazar.com"),
   title: {
-    default: "Sultan Bazar — সুলতান বাজার | রান্নাঘরের বিশ্বস্ত সঙ্গী",
+    default: "Sultan Baazar — সুলতান বাজার | রান্নাঘরের বিশ্বস্ত সঙ্গী",
     template: "%s | Sultan Bazar"
   },
   description: "সুলতান বাজার থেকে ১০০% প্রাকৃতিক মশলা, খাঁটি তেল এবং রান্নার প্রয়োজনীয় পণ্য কিনুন। স্বাদে খাঁটি, মানে নিখুঁত। 100% Natural Spices, Oils & Cooking Essentials from Sultan Bazar.",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     "Pure Food Bangladesh", "Organic Food Dhaka", "ASR Global Trade"
   ],
   authors: [{ name: "Sultan Bazar" }],
-  creator: "Sultan Bazar",
+  creator: "Sultan Baazar",
   publisher: "Sultan Bazar",
   formatDetection: {
     email: false,
@@ -27,16 +27,16 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "Sultan Bazar — রান্নাঘরের বিশ্বস্ত সঙ্গী",
+    title: "Sultan Baazar — রান্নাঘরের বিশ্বস্ত সঙ্গী",
     description: "১০০% প্রাকৃতিক মশলা, খাঁটি তেল এবং রান্নার প্রয়োজনীয় পণ্য। স্বাদে খাঁটি, মানে নিখুঁত।",
-    url: "https://sultanbazar.com.bd", // Replace with actual domain if known, or leave generic
+    url: "https://sultanbaazar.com",
     siteName: "Sultan Bazar",
     images: [
       {
-        url: "/images/parallax-full-width.jpg",
+        url: "/assets/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Sultan Bazar - Natural Spices and Cooking Essentials",
+        alt: "Sultan Bazar — সুলতান বাজার | রান্নাঘরের বিশ্বস্ত সঙ্গী",
       },
     ],
     locale: "bn_BD",
@@ -44,9 +44,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sultan Bazar — রান্নাঘরের বিশ্বস্ত সঙ্গী",
+    title: "Sultan Baazar — রান্নাঘরের বিশ্বস্ত সঙ্গী",
     description: "১০০% প্রাকৃতিক মশলা, খাঁটি তেল এবং রান্নার প্রয়োজনীয় পণ্য। স্বাদে খাঁটি, মানে নিখুঁত।",
-    images: ["/images/parallax-full-width.jpg"],
+    images: ["/assets/og-image.jpg"],
   },
   icons: {
     icon: [
