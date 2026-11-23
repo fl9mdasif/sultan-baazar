@@ -155,8 +155,12 @@ export default function ProductDetailPage() {
             setAddedToCart(true);
             toast.success("Added to cart!");
             setTimeout(() => setAddedToCart(false), 2000);
-        } catch {
-            toast.error("Failed to add to cart");
+        } catch (err: unknown) {
+            const msg =
+                typeof err === "object" && err !== null && "data" in err
+                    ? (err as { data?: { message?: string } }).data?.message
+                    : undefined;
+            toast.error(msg ?? "Failed to add to cart");
         }
     };
 

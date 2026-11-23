@@ -72,6 +72,7 @@ export default function Navbar() {
     const [catDropdownOpen, setCatDropdownOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const catDropdownRef = useRef<HTMLDivElement>(null);
+    const catLeaveTimer = useRef<ReturnType<typeof setTimeout>>(null);
     const { data: categoryData } = useGetAllCategoriesQuery({});
     const categories: TCategory[] = categoryData || [];
 
@@ -107,7 +108,10 @@ export default function Navbar() {
             }
         };
         document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+            if (catLeaveTimer.current) clearTimeout(catLeaveTimer.current);
+        };
     }, []);
 
     const handleLogout = () => {
@@ -322,8 +326,13 @@ export default function Navbar() {
                         <div
                             className="relative"
                             ref={catDropdownRef}
-                            onMouseEnter={() => setCatDropdownOpen(true)}
-                            onMouseLeave={() => setCatDropdownOpen(false)}
+                            onMouseEnter={() => {
+                                if (catLeaveTimer.current) clearTimeout(catLeaveTimer.current);
+                                setCatDropdownOpen(true);
+                            }}
+                            onMouseLeave={() => {
+                                catLeaveTimer.current = setTimeout(() => setCatDropdownOpen(false), 150);
+                            }}
                         >
                             <button
                                 className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:text-[#B5451B] hover:bg-orange-50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B5451B]"

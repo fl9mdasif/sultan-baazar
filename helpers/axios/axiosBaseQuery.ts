@@ -1,5 +1,5 @@
 import type { BaseQueryFn } from "@reduxjs/toolkit/query";
-import type { AxiosRequestConfig, AxiosError } from "axios";
+import type { AxiosRequestConfig } from "axios";
 import { instance as axiosInstance } from "./axiosInstance";
 import { TMeta } from "@/types";
 
@@ -32,11 +32,11 @@ export const axiosBaseQuery =
       });
       return result;
     } catch (axiosError) {
-      const err = axiosError as AxiosError;
+      const err = axiosError as { statusCode?: number; message?: string };
       return {
         error: {
-          status: err.response?.status,
-          data: err.response?.data || err.message,
+          status: err.statusCode ?? 500,
+          data: { message: err.message ?? "Something went wrong" },
         },
       };
     }
