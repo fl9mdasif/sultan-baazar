@@ -69,14 +69,38 @@ export default function Hero() {
                 <div className="hero-anim-4">
                     <Link
                         href="/shop"
-                        className="inline-flex items-center gap-2 font-bengali font-bold text-white text-sm md:text-base px-6 py-3 md:px-8 md:py-3.5 rounded-full transition-transform hover:scale-105 active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                        className="inline-flex hover:bg-[#f34b0f7a] border border-white/30 items-center gap-2 font-bengali font-bold text-white text-sm md:text-base px-6 py-3 md:px-8 md:py-3.5 rounded-full transition-transform hover:scale-105 active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                         style={{
-                            background: "#B5451B",
+                            background: "#b5441b9f",
                             boxShadow: "0 6px 24px rgba(181,69,27,0.45)",
                         }}
                     >
-                        এখনই কেনাকাটা করুন ›
+                        কেনাকাটা করুন
                     </Link>
+                </div>
+
+                {/* Social proof */}
+                <div className="hero-anim-4 mt-4 md:mt-6 flex items-center gap-3">
+                    {/* Stacked avatars */}
+                    <div className="flex -space-x-2.5">
+                        {[
+                            { letter: "A", bg: "#B5451B" },
+                            { letter: "J", bg: "#7C3012" },
+                            { letter: "K", bg: "#D4860A" },
+                        ].map(({ letter, bg }) => (
+                            <span
+                                key={letter}
+                                className="w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center text-xs md:text-sm font-black text-white ring-2 ring-white/30 select-none"
+                                style={{ background: bg }}
+                                aria-hidden="true"
+                            >
+                                {letter}
+                            </span>
+                        ))}
+                    </div>
+                    <p className="font-bengali text-[11px] md:text-xs text-white/85 leading-snug">
+                        <span className="font-black text-white">১০,০০০+</span> সুলতান<br className="md:hidden" /> বিশ্বাস করেন
+                    </p>
                 </div>
             </div>
         </section>
