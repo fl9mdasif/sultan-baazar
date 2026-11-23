@@ -699,9 +699,9 @@ export default function AboutPage() {
                                 </p>
                                 <p style={{ color: "var(--clr-muted)", fontSize: "0.85rem", lineHeight: 1.6 }}>
                                     আমাদের শোরুমে এসে পরিদর্শন করুন এবং অনলাইনে অর্ডার করার সময় কোড{" "}
-                                    <span className="about-showroom-coupon-code">SHOWROOM5</span>{" "}
+                                    <span className="about-showroom-coupon-code">SHOWROOM15</span>{" "}
                                     ব্যবহার করে{" "}
-                                    <strong style={{ color: "var(--clr-brand)" }}>flat 5% ছাড়</strong> পান।
+                                    <strong style={{ color: "var(--clr-brand)" }}>flat 15% ছাড়</strong> পান।
                                 </p>
                             </div>
                         </div>

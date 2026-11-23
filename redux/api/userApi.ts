@@ -2,6 +2,13 @@ import { TSavedAddress } from "@/types";
 import { tagTypes } from "../tag-types";
 import { baseApi } from "./baseApi";
 
+export type SocialProofUser = {
+    _id: string;
+    username: string;
+    profilePicture?: string;
+    role: string;
+};
+
 const userApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
         // ── Profile (all authenticated users) ─────────────────────────────────
@@ -109,6 +116,11 @@ const userApi = baseApi.injectEndpoints({
             invalidatesTags: [tagTypes.users],
         }),
 
+        // GET /users/social-proof — public, no auth
+        getSocialProofUsers: build.query<SocialProofUser[], void>({
+            query: () => ({ url: "/users/social-proof", method: "GET" }),
+        }),
+
         // Guest checkout — find-or-create user with real email, return accessToken
         guestCheckout: build.mutation({
             query: (data: { email: string; fullName: string; phone: string }) => ({
@@ -121,6 +133,7 @@ const userApi = baseApi.injectEndpoints({
 });
 
 export const {
+    useGetSocialProofUsersQuery,
     useGetMyProfileQuery,
     useUpdateProfileMutation,
     useChangePasswordMutation,

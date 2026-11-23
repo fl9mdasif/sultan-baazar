@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { TrustedAvatars } from "@/components/shared/TrustedAvatars";
 
 export default function Hero() {
     return (
@@ -79,28 +80,9 @@ export default function Hero() {
                     </Link>
                 </div>
 
-                {/* Social proof */}
-                <div className="hero-anim-4 mt-4 md:mt-6 flex items-center gap-3">
-                    {/* Stacked avatars */}
-                    <div className="flex -space-x-2.5">
-                        {[
-                            { letter: "A", bg: "#B5451B" },
-                            { letter: "J", bg: "#7C3012" },
-                            { letter: "K", bg: "#D4860A" },
-                        ].map(({ letter, bg }) => (
-                            <span
-                                key={letter}
-                                className="w-8 h-8 md:w-9 md:h-9 rounded-full flex items-center justify-center text-xs md:text-sm font-black text-white ring-2 ring-white/30 select-none"
-                                style={{ background: bg }}
-                                aria-hidden="true"
-                            >
-                                {letter}
-                            </span>
-                        ))}
-                    </div>
-                    <p className="font-bengali text-[11px] md:text-xs text-white/85 leading-snug">
-                        <span className="font-black text-white">১০,০০০+</span> সুলতান<br className="md:hidden" /> বিশ্বাস করেন
-                    </p>
+                {/* Social proof — desktop only */}
+                <div className="hidden md:block hero-anim-4 mt-6">
+                    <TrustedAvatars />
                 </div>
             </div>
         </section>

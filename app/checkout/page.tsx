@@ -5,6 +5,7 @@ import {
     useGetAddressesQuery,
     useGuestCheckoutMutation,
 } from "@/redux/api/userApi";
+import { TrustedAvatars } from "@/components/shared/TrustedAvatars";
 import { useGetCartQuery } from "@/redux/api/cartApi";
 import { usePlaceOrderMutation } from "@/redux/api/orderApi";
 import { TCart, TSavedAddress } from "@/types/common";
@@ -839,6 +840,8 @@ function CheckoutPageContent() {
                                 </Button>
 
 
+                                <TrustedAvatars dark className="mt-6 justify-center" />
+
                                 {!userLoggedIn && (
                                     <div className="mt-5 p-5 rounded-[1.5rem] bg-orange-50 border border-orange-100 shadow-sm relative overflow-hidden group">
                                         <div className="absolute top-0 right-0 w-20 h-20 bg-[#B5451B]/5 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500" />
@@ -860,18 +863,6 @@ function CheckoutPageContent() {
                                     </p>
                                 )}
 
-                                <div className="mt-8 flex items-center justify-center gap-3">
-                                    <div className="flex -space-x-2">
-                                        {[1, 2, 3].map((i) => (
-                                            <div key={i} className="w-6 h-6 rounded-full border-2 border-white bg-gray-100 flex items-center justify-center overflow-hidden">
-                                                <div className="w-full h-full bg-gray-200" />
-                                            </div>
-                                        ))}
-                                    </div>
-                                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                                        Trusted by 10k+ Sultans
-                                    </p>
-                                </div>
                             </div>
                         </div>
                     </aside>

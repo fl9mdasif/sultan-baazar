@@ -90,8 +90,8 @@ function OrderStatusTracker({ status }: { status: string }) {
 
 const TABS = [
     { id: "all", label: "All Orders", icon: Package },
-    { id: "pending", label: "Pendings", icon: Clock },
-    { id: "confirmed", label: "To Ship", icon: CheckCircle },
+    // { id: "pending", label: "Pendings", icon: Clock },
+    // { id: "confirmed", label: "To Ship", icon: CheckCircle },
     { id: "shipped", label: "To Receive", icon: Truck },
     { id: "delivered", label: "To Review", icon: Star },
     { id: "completed", label: "Completed", icon: CheckCircle },

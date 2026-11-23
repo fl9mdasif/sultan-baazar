@@ -180,7 +180,7 @@ export default function DashboardSidebar() {
                     >
                         <Menu className="w-5 h-5" />
                     </button>
-                    <span className="text-sm font-semibold text-gray-700">Menu</span>
+                    <span className="text-sm font-semibold text-gray-700">Dashboard menu</span>
                 </div>
 
                 {/* Overlay */}

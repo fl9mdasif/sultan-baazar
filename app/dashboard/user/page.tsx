@@ -47,8 +47,8 @@ export default function UserDashboard() {
     const statCards = [
         { label: "Total orders", value: orders.length, icon: ShoppingCart, color: "#B5451B" },
         { label: "Pending", value: countOf("pending"), icon: Clock, color: "#f59e0b" },
-        { label: "Confirmed", value: countOf("confirmed"), icon: CheckCircle, color: "#3b82f6" },
-        { label: "Processing", value: countOf("processing"), icon: Settings, color: "#0d9488" },
+        // { label: "Confirmed", value: countOf("confirmed"), icon: CheckCircle, color: "#3b82f6" },
+        // { label: "Processing", value: countOf("processing"), icon: Settings, color: "#0d9488" },
         { label: "Shipped", value: countOf("shipped"), icon: Truck, color: "#0ea5e9" },
         { label: "Delivered", value: countOf("delivered"), icon: CheckCircle, color: "#10b981" },
         { label: "Cancelled", value: countOf("cancelled"), icon: XCircle, color: "#ef4444" },
