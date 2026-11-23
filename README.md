@@ -100,24 +100,6 @@ cp .env.example .env   # fill in the values
 npm run dev            # starts on http://localhost:5000
 ```
 
-Required environment variables:
-
-```
-PORT=5000
-DATABASE_URL=
-JWT_ACCESS_SECRET=
-JWT_REFRESH_SECRET=
-JWT_ACCESS_EXPIRES_IN=10d
-JWT_REFRESH_EXPIRES_IN=100d
-BCRYPT_SALT_ROUND=12
-CLOUD_NAME=
-CLOUD_API_KEY=
-CLOUD_API_SECRET=
-ADMIN_EMAIL=
-DEFAULT_PASS=
-NODE_ENV=development
-```
-
 ### Frontend
 
 ```bash
