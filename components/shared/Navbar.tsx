@@ -21,49 +21,6 @@ const navLinks = [
     { label: "Contact", href: "/contact" },
 ];
 
-function StatusBar() {
-    const [time, setTime] = useState("9:41")
-
-    useEffect(() => {
-        const update = () => {
-            const now = new Date();
-            const h = now.getHours().toString().padStart(2, "0");
-            const m = now.getMinutes().toString().padStart(2, "0");
-            setTime(`${h}:${m}`);
-        };
-        update();
-        const t = setInterval(update, 30000);
-        return () => clearInterval(t);
-    }, []);
-
-    return (
-        <div
-            className="md:hidden flex items-center justify-between px-5 pt-2 pb-1"
-            style={{ background: "#FDF6EC" }}
-        >
-            <span className="text-[12px] font-bold text-gray-800">{time}</span>
-            <div className="flex items-center gap-1.5 text-gray-700">
-                {/* Signal */}
-                <svg width="15" height="11" viewBox="0 0 15 11" fill="currentColor">
-                    <rect x="0" y="7" width="2.5" height="4" rx="0.5" />
-                    <rect x="3.5" y="5" width="2.5" height="6" rx="0.5" />
-                    <rect x="7" y="3" width="2.5" height="8" rx="0.5" />
-                    <rect x="10.5" y="0" width="2.5" height="11" rx="0.5" />
-                </svg>
-                {/* Wifi */}
-                <svg width="15" height="11" viewBox="0 0 20 15" fill="currentColor">
-                    <path d="M10 11a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm-4-3.5a5.5 5.5 0 018 0l-1.2 1.2a3.75 3.75 0 00-5.6 0L6 7.5zm-3-3A9.5 9.5 0 0117 4.5L15.8 5.7A7.75 7.75 0 004.2 5.7L3 4.5zm-2.5-2.5A13.5 13.5 0 0119.5 2L18.3 3.2A11.75 11.75 0 001.7 3.2L.5 2z" />
-                </svg>
-                {/* Battery */}
-                <svg width="22" height="11" viewBox="0 0 26 13" fill="currentColor">
-                    <rect x="0.75" y="0.75" width="21.5" height="11.5" rx="2.5" stroke="currentColor" strokeWidth="1.5" fill="none" />
-                    <rect x="2.25" y="2.25" width="16" height="8.5" rx="1.5" />
-                    <path d="M23 4.5v4a2.5 2.5 0 000-4z" />
-                </svg>
-            </div>
-        </div>
-    );
-}
 
 export default function Navbar() {
     const router = useRouter();
@@ -128,9 +85,6 @@ export default function Navbar() {
             }`}
             style={{ background: "#FDF6EC" }}
         >
-            {/* Decorative status bar — mobile only */}
-            <StatusBar />
-
             {/* Main nav row */}
             <div
                 className="bg-white px-4 py-2.5"
