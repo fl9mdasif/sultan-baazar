@@ -141,13 +141,13 @@ function GuestShippingSection({
     errors: Record<string, string>;
 }) {
     const inputCls =
-        "w-full rounded-xl border border-orange-100 bg-gray-50/50 px-4 py-3 text-sm font-semibold outline-none focus:border-[#B5451B] focus:bg-white transition-all shadow-sm";
+        "w-full rounded-xl border border-orange-100 bg-gray-50/50 px-4 py-3 text-sm font-semibold outline-none focus-visible:border-[#B5451B] focus-visible:bg-white transition-[border-color,background-color] shadow-sm";
     const errorInputCls =
-        "w-full rounded-xl border border-red-300 bg-red-50/5 px-4 py-3 text-sm font-semibold outline-none focus:border-red-500 transition-all shadow-sm";
+        "w-full rounded-xl border border-red-300 bg-red-50/5 px-4 py-3 text-sm font-semibold outline-none focus-visible:border-red-500 transition-[border-color] shadow-sm";
     const labelCls =
-        "text-[10px] font-black text-gray-400 uppercase tracking-widest block px-1 mb-1.5";
+        "text-[10px] font-bold text-gray-400 block px-1 mb-1.5";
     const errorLabelCls =
-        "text-[10px] font-black text-red-500 uppercase tracking-widest block px-1 mb-1.5";
+        "text-[10px] font-bold text-red-500 block px-1 mb-1.5";
 
     return (
         <section className="bg-white rounded-[2.5rem] p-5 sm:p-8 border border-orange-100 shadow-sm relative overflow-hidden" aria-labelledby="guest-shipping-heading">
@@ -809,11 +809,11 @@ function CheckoutPageContent() {
                             <div className="p-8 bg-white">
                                 <div className="flex justify-between items-end mb-8">
                                     <div>
-                                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 font-sans">Total to Pay</p>
+                                        <p className="text-[11px] font-bold text-gray-400 mb-1">Total to pay</p>
                                         <p className="text-4xl font-black" style={{ color: "#B5451B" }}>৳{total}</p>
                                     </div>
                                     <div className="text-right">
-                                        <p className="text-[10px] font-bold text-green-600 uppercase tracking-widest flex items-center justify-end gap-1">
+                                        <p className="text-[11px] font-bold text-green-600 flex items-center justify-end gap-1">
                                             <ShieldCheck className="w-3 h-3" /> Secure
                                         </p>
                                     </div>
@@ -822,7 +822,7 @@ function CheckoutPageContent() {
                                 <Button
                                     onClick={userLoggedIn ? handlePlaceOrderLoggedIn : handlePlaceOrderGuest}
                                     disabled={isProcessing || checkoutItems.length === 0 || !isDeliveryAvailable}
-                                    className="w-full py-8 rounded-[1.5rem] text-xl font-black shadow-2xl hover:shadow-[#B5451B]/20 transition-all active:scale-[0.98] group flex items-center justify-center gap-3 cursor-pointer"
+                                    className="w-full py-8 rounded-[1.5rem] text-xl font-black shadow-2xl hover:shadow-[#B5451B]/20 transition-[opacity,transform] active:scale-[0.98] group flex items-center justify-center gap-3 cursor-pointer"
                                     style={{
                                         background: "linear-gradient(135deg, #B5451B, #D4860A)",
                                         color: "white",
@@ -832,7 +832,7 @@ function CheckoutPageContent() {
                                         <Loader2 className="w-6 h-6 animate-spin" />
                                     ) : (
                                         <>
-                                            PLACE ORDER{" "}
+                                            Place order{" "}
                                             <CheckCircle className="w-6 h-6 group-hover:scale-110 transition-transform" />
                                         </>
                                     )}
@@ -841,9 +841,9 @@ function CheckoutPageContent() {
 
                                 {!userLoggedIn && (
                                     <div className="mt-5 p-5 rounded-[1.5rem] bg-orange-50 border border-orange-100 shadow-sm relative overflow-hidden group">
-                                        <div className="absolute top-0 right-0 w-20 h-20 bg-[#B5451B]/5 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-700" />
+                                        <div className="absolute top-0 right-0 w-20 h-20 bg-[#B5451B]/5 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500" />
                                         <p className="text-[11px] text-gray-700 leading-relaxed relative z-10">
-                                            <span className="font-black text-[#B5451B] uppercase tracking-wider block mb-1">Guest Checkout</span>
+                                            <span className="font-black text-[#B5451B] block mb-1">Guest checkout</span>
                                             Your details are used only to process this order. Create an account separately to manage future orders online.
                                         </p>
                                     </div>
