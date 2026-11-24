@@ -96,14 +96,14 @@ export default function OrderSuccessModal({ isOpen, orderItems, totalPrice }: Or
                             </Button>
                         </Link>
                         
-                        <div className="grid grid-cols-2 gap-3">
-                            <Link href="/shop">
+                        <div className="flex flex-col sm:flex-row gap-3">
+                            <Link href="/shop" className="w-full sm:flex-1">
                                 <Button variant="outline" className="w-full h-14 rounded-2xl border-orange-100 text-gray-700 hover:bg-orange-50 font-bold transition-all">
                                     <ShoppingBag className="w-5 h-5 mr-2" />
                                     Products
                                 </Button>
                             </Link>
-                            <Link href="/dashboard/user/orders">
+                            <Link href="/dashboard/user/orders" className="w-full sm:flex-1">
                                 <Button variant="outline" className="w-full h-14 rounded-2xl border-orange-100 text-gray-700 hover:bg-orange-50 font-bold transition-all">
                                     <LayoutDashboard className="w-5 h-5 mr-2" />
                                     Dashboard

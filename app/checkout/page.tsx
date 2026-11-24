@@ -153,7 +153,7 @@ function GuestShippingSection({
     return (
         <section className="bg-white rounded-[2.5rem] p-5 sm:p-8 border border-orange-100 shadow-sm relative overflow-hidden" aria-labelledby="guest-shipping-heading">
             <div className="absolute top-0 right-0 w-32 h-32 bg-orange-50 opacity-20 rounded-full blur-2xl -mr-16 -mt-16" />
-            <h3 id="guest-shipping-heading" className="text-2xl font-black text-gray-900 flex items-center gap-3 mb-8 tracking-tight">
+            <h3 id="guest-shipping-heading" className="text-xl sm:text-2xl font-black text-gray-900 flex items-center gap-2 sm:gap-3 mb-6 sm:mb-8 tracking-tight">
                 <div className="w-10 h-10 bg-[#B5451B] rounded-2xl flex items-center justify-center text-white shadow-lg shadow-[#B5451B]/20">
                     <Truck className="w-5 h-5" />
                 </div>
@@ -650,7 +650,7 @@ function CheckoutPageContent() {
     const isProcessing = isPlacing || isGuestLoading;
 
     return (
-        <div className="min-h-screen bg-[#FAFAF8] py-12 lg:py-20">
+        <div className="min-h-screen bg-[#FAFAF8] py-12 lg:py-20 overflow-x-hidden">
             <div className="container mx-auto px-4 lg:px-8 max-w-7xl">
                 {/* Header */}
                 <div className="mb-10">
@@ -661,7 +661,7 @@ function CheckoutPageContent() {
                         <ChevronLeft className="w-4 h-4" /> Back to{" "}
                         {isDirectBuy ? "Product" : "Cart"}
                     </Link>
-                    <h1 className="text-4xl font-extrabold text-gray-900 leading-tight">
+                    <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
                         Secure <span style={{ color: "#B5451B" }}>Checkout</span>
                     </h1>
                     <p className="text-gray-500 font-medium tracking-wide">
@@ -671,15 +671,15 @@ function CheckoutPageContent() {
                     </p>
                 </div>
 
-                <div className="grid lg:grid-cols-12 gap-10 items-start">
+                <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
                     {/* Left: Forms */}
-                    <div className="lg:col-span-8 space-y-8">
+                    <div className="lg:col-span-8 space-y-8 order-2 lg:order-1">
                         {/* ── Shipping Address ── */}
                         {userLoggedIn ? (
                             <section className="bg-white rounded-[2.5rem] p-5 sm:p-8 border border-orange-100 shadow-sm relative overflow-hidden" aria-labelledby="saved-address-heading">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-orange-50 opacity-20 rounded-full blur-2xl -mr-16 -mt-16" />
-                                <div className="flex items-center justify-between mb-8">
-                                    <h3 id="saved-address-heading" className="text-2xl font-black text-gray-900 flex items-center gap-3">
+                                <div className="flex flex-wrap items-center justify-between gap-3 mb-6 sm:mb-8">
+                                    <h3 id="saved-address-heading" className="text-xl sm:text-2xl font-black text-gray-900 flex items-center gap-2 sm:gap-3">
                                         <div className="w-10 h-10 bg-[#B5451B] rounded-2xl flex items-center justify-center text-white shadow-lg shadow-[#B5451B]/20">
                                             <Truck className="w-5 h-5" />
                                         </div>
@@ -691,7 +691,7 @@ function CheckoutPageContent() {
                                             setIsAddressModalOpen(true);
                                         }}
                                         variant="outline"
-                                        className="rounded-full border-orange-100 text-[#B5451B] hover:bg-orange-50 font-bold cursor-pointer"
+                                        className="rounded-full border-orange-100 text-[#B5451B] hover:bg-orange-50 font-bold cursor-pointer flex-shrink-0"
                                     >
                                         <Plus className="w-4 h-4 mr-2" /> Add New
                                     </Button>
@@ -753,7 +753,7 @@ function CheckoutPageContent() {
                                         <Button
                                             onClick={handleQuickLogin}
                                             disabled={isQuickLogging}
-                                            className="rounded-xl text-white font-bold px-6 cursor-pointer"
+                                            className="rounded-xl text-white font-bold px-6 cursor-pointer flex-shrink-0"
                                             style={{ background: "#B5451B" }}
                                         >
                                             {isQuickLogging ? <Loader2 className="w-4 h-4 animate-spin" /> : "Login →"}
@@ -778,10 +778,10 @@ function CheckoutPageContent() {
                     </div>
 
                     {/* Right: Order Summary */}
-                    <aside className="lg:col-span-4 sticky top-24">
+                    <aside className="lg:col-span-4 lg:sticky lg:top-24 order-1 lg:order-2">
                         <div className="bg-white rounded-[2.5rem] border border-orange-100 shadow-xl overflow-hidden">
-                            <div className="p-8 border-b border-orange-100 bg-orange-50/20">
-                                <h3 className="text-2xl font-black text-gray-900 mb-8 tracking-tight">Order Summary</h3>
+                            <div className="p-5 sm:p-8 border-b border-orange-100 bg-orange-50/20">
+                                <h3 className="text-xl sm:text-2xl font-black text-gray-900 mb-5 sm:mb-8 tracking-tight">Order Summary</h3>
                                 <div className="space-y-6 max-h-[300px] overflow-y-auto pr-2 scrollbar-hide">
                                     {checkoutItems.map((item, idx) => {
                                         const product = item.product;
@@ -807,11 +807,11 @@ function CheckoutPageContent() {
 
                             <CheckoutTotals subtotal={subtotal} shippingCharge={shippingCharge} discount={couponDiscount} deliveryAvailable={isDeliveryAvailable} couponCode={couponCode} validatingCoupon={isValidatingCoupon} onCouponChange={(value) => { setCouponCode(value); setCouponDiscount(0); }} onApplyCoupon={applyCoupon} />
 
-                            <div className="p-8 bg-white">
-                                <div className="flex justify-between items-end mb-8">
+                            <div className="p-5 sm:p-8 bg-white">
+                                <div className="flex justify-between items-end mb-5 sm:mb-8">
                                     <div>
                                         <p className="text-[11px] font-bold text-gray-400 mb-1">Total to pay</p>
-                                        <p className="text-4xl font-black" style={{ color: "#B5451B" }}>৳{total}</p>
+                                        <p className="text-3xl sm:text-4xl font-black" style={{ color: "#B5451B" }}>৳{total}</p>
                                     </div>
                                     <div className="text-right">
                                         <p className="text-[11px] font-bold text-green-600 flex items-center justify-end gap-1">
@@ -823,14 +823,19 @@ function CheckoutPageContent() {
                                 <Button
                                     onClick={userLoggedIn ? handlePlaceOrderLoggedIn : handlePlaceOrderGuest}
                                     disabled={isProcessing || checkoutItems.length === 0 || !isDeliveryAvailable}
-                                    className="w-full py-8 rounded-[1.5rem] text-xl font-black shadow-2xl hover:shadow-[#B5451B]/20 transition-[opacity,transform] active:scale-[0.98] group flex items-center justify-center gap-3 cursor-pointer"
+                                    className="w-full py-5 sm:py-8 rounded-[1.5rem] text-lg sm:text-xl font-black transition-[opacity,transform] active:scale-[0.98] group flex items-center justify-center gap-3 cursor-pointer disabled:opacity-100"
                                     style={{
-                                        background: "linear-gradient(135deg, #B5451B, #D4860A)",
+                                        background: !isDeliveryAvailable || checkoutItems.length === 0
+                                            ? "#9CA3AF"
+                                            : "linear-gradient(135deg, #B5451B, #D4860A)",
                                         color: "white",
+                                        boxShadow: !isDeliveryAvailable || checkoutItems.length === 0 ? "none" : undefined,
                                     }}
                                 >
                                     {isProcessing ? (
                                         <Loader2 className="w-6 h-6 animate-spin" />
+                                    ) : !isDeliveryAvailable ? (
+                                        <>Delivery unavailable</>
                                     ) : (
                                         <>
                                             Place order{" "}
@@ -844,8 +849,8 @@ function CheckoutPageContent() {
 
                                 {!userLoggedIn && (
                                     <div className="mt-5 p-5 rounded-[1.5rem] bg-orange-50 border border-orange-100 shadow-sm relative overflow-hidden group">
-                                        <div className="absolute top-0 right-0 w-20 h-20 bg-[#B5451B]/5 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500" />
-                                        <p className="text-[11px] text-gray-700 leading-relaxed relative z-10">
+                                        <div className="absolute top-0 right-0 w-16 h-16 bg-[#B5451B]/5 rounded-full -mr-6 -mt-6 group-hover:scale-150 transition-transform duration-500" />
+                                        <p className="text-[11px] text-gray-700 leading-relaxed relative z-10 break-words">
                                             <span className="font-black text-[#B5451B] block mb-1">Guest checkout</span>
                                             Your details are used only to process this order. Create an account separately to manage future orders online.
                                         </p>

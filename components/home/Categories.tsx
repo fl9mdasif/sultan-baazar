@@ -141,6 +141,7 @@ export default function Categories() {
                                           }
                                         : {
                                               background: "rgba(181,69,27,0.08)",
+                                              boxShadow: "0 4px 14px rgba(0,0,0,0.10)",
                                               border: "2px solid transparent",
                                           }
                                 }
