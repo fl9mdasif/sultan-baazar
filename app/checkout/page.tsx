@@ -649,6 +649,71 @@ function CheckoutPageContent() {
 
     const isProcessing = isPlacing || isGuestLoading;
 
+    const payBlock = (
+                            <div className="p-5 sm:p-8 bg-white">
+                                <div className="flex justify-between items-end mb-5 sm:mb-8">
+                                    <div>
+                                        <p className="text-[11px] font-bold text-gray-400 mb-1">Total to pay</p>
+                                        <p className="text-3xl sm:text-4xl font-black" style={{ color: "#B5451B" }}>৳{total}</p>
+                                    </div>
+                                    <div className="text-right">
+                                        <p className="text-[11px] font-bold text-green-600 flex items-center justify-end gap-1">
+                                            <ShieldCheck className="w-3 h-3" /> Secure
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <Button
+                                    onClick={userLoggedIn ? handlePlaceOrderLoggedIn : handlePlaceOrderGuest}
+                                    disabled={isProcessing || checkoutItems.length === 0 || !isDeliveryAvailable}
+                                    className="w-full py-5 sm:py-8 rounded-[1.5rem] text-lg sm:text-xl font-black transition-[opacity,transform] active:scale-[0.98] group flex items-center justify-center gap-3 cursor-pointer disabled:opacity-100"
+                                    style={{
+                                        background: !isDeliveryAvailable || checkoutItems.length === 0
+                                            ? "#9CA3AF"
+                                            : "linear-gradient(135deg, #B5451B, #D4860A)",
+                                        color: "white",
+                                        boxShadow: !isDeliveryAvailable || checkoutItems.length === 0 ? "none" : undefined,
+                                    }}
+                                >
+                                    {isProcessing ? (
+                                        <Loader2 className="w-6 h-6 animate-spin" />
+                                    ) : !isDeliveryAvailable ? (
+                                        <>Delivery unavailable</>
+                                    ) : (
+                                        <>
+                                            Place order{" "}
+                                            <CheckCircle className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                                        </>
+                                    )}
+                                </Button>
+
+
+                                <TrustedAvatars dark className="mt-6 justify-center" />
+
+                                {!userLoggedIn && (
+                                    <div className="mt-5 p-5 rounded-[1.5rem] bg-orange-50 border border-orange-100 shadow-sm relative overflow-hidden group">
+                                        <div className="absolute top-0 right-0 w-16 h-16 bg-[#B5451B]/5 rounded-full -mr-6 -mt-6 group-hover:scale-150 transition-transform duration-500" />
+                                        <p className="text-[11px] text-gray-700 leading-relaxed relative z-10 break-words">
+                                            <span className="font-black text-[#B5451B] block mb-1">Guest checkout</span>
+                                            Your details are used only to process this order. Create an account separately to manage future orders online.
+                                        </p>
+                                    </div>
+                                )}
+
+
+
+                                {!userLoggedIn && (
+                                    <p className="mt-4 text-center text-xs text-gray-400 font-medium">
+                                        Already have an account?{" "}
+                                        <Link href="/login" className="text-[#B5451B] font-bold hover:underline">
+                                            Login here
+                                        </Link>
+                                    </p>
+                                )}
+
+                            </div>
+    );
+
     return (
         <div className="min-h-screen bg-[#FAFAF8] py-12 lg:py-20 overflow-x-hidden">
             <div className="container mx-auto px-4 lg:px-8 max-w-7xl">
@@ -671,9 +736,9 @@ function CheckoutPageContent() {
                     </p>
                 </div>
 
-                <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
                     {/* Left: Forms */}
-                    <div className="lg:col-span-8 space-y-8 order-2 lg:order-1">
+                    <div className="min-w-0 lg:col-span-8 space-y-8 order-2 lg:order-1">
                         {/* ── Shipping Address ── */}
                         {userLoggedIn ? (
                             <section className="bg-white rounded-[2.5rem] p-5 sm:p-8 border border-orange-100 shadow-sm relative overflow-hidden" aria-labelledby="saved-address-heading">
@@ -748,7 +813,7 @@ function CheckoutPageContent() {
                                             value={quickLoginEmail}
                                             onChange={(e) => setQuickLoginEmail(e.target.value)}
                                             onKeyDown={(e) => e.key === "Enter" && handleQuickLogin()}
-                                            className="flex-1 border border-orange-100 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#B5451B] transition-colors"
+                                            className="min-w-0 flex-1 border border-orange-100 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#B5451B] transition-colors"
                                         />
                                         <Button
                                             onClick={handleQuickLogin}
@@ -775,10 +840,13 @@ function CheckoutPageContent() {
 
                         {/* ── Payment Method ── */}
                         <CodPaymentNotice />
+
+                        {/* Place order — below the form on small screens */}
+                        <div className="lg:hidden bg-white rounded-[2.5rem] border border-orange-100 shadow-xl overflow-hidden">{payBlock}</div>
                     </div>
 
                     {/* Right: Order Summary */}
-                    <aside className="lg:col-span-4 lg:sticky lg:top-24 order-1 lg:order-2">
+                    <aside className="min-w-0 lg:col-span-4 lg:sticky lg:top-24 order-1 lg:order-2">
                         <div className="bg-white rounded-[2.5rem] border border-orange-100 shadow-xl overflow-hidden">
                             <div className="p-5 sm:p-8 border-b border-orange-100 bg-orange-50/20">
                                 <h3 className="text-xl sm:text-2xl font-black text-gray-900 mb-5 sm:mb-8 tracking-tight">Order Summary</h3>
@@ -807,68 +875,7 @@ function CheckoutPageContent() {
 
                             <CheckoutTotals subtotal={subtotal} shippingCharge={shippingCharge} discount={couponDiscount} deliveryAvailable={isDeliveryAvailable} couponCode={couponCode} validatingCoupon={isValidatingCoupon} onCouponChange={(value) => { setCouponCode(value); setCouponDiscount(0); }} onApplyCoupon={applyCoupon} />
 
-                            <div className="p-5 sm:p-8 bg-white">
-                                <div className="flex justify-between items-end mb-5 sm:mb-8">
-                                    <div>
-                                        <p className="text-[11px] font-bold text-gray-400 mb-1">Total to pay</p>
-                                        <p className="text-3xl sm:text-4xl font-black" style={{ color: "#B5451B" }}>৳{total}</p>
-                                    </div>
-                                    <div className="text-right">
-                                        <p className="text-[11px] font-bold text-green-600 flex items-center justify-end gap-1">
-                                            <ShieldCheck className="w-3 h-3" /> Secure
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <Button
-                                    onClick={userLoggedIn ? handlePlaceOrderLoggedIn : handlePlaceOrderGuest}
-                                    disabled={isProcessing || checkoutItems.length === 0 || !isDeliveryAvailable}
-                                    className="w-full py-5 sm:py-8 rounded-[1.5rem] text-lg sm:text-xl font-black transition-[opacity,transform] active:scale-[0.98] group flex items-center justify-center gap-3 cursor-pointer disabled:opacity-100"
-                                    style={{
-                                        background: !isDeliveryAvailable || checkoutItems.length === 0
-                                            ? "#9CA3AF"
-                                            : "linear-gradient(135deg, #B5451B, #D4860A)",
-                                        color: "white",
-                                        boxShadow: !isDeliveryAvailable || checkoutItems.length === 0 ? "none" : undefined,
-                                    }}
-                                >
-                                    {isProcessing ? (
-                                        <Loader2 className="w-6 h-6 animate-spin" />
-                                    ) : !isDeliveryAvailable ? (
-                                        <>Delivery unavailable</>
-                                    ) : (
-                                        <>
-                                            Place order{" "}
-                                            <CheckCircle className="w-6 h-6 group-hover:scale-110 transition-transform" />
-                                        </>
-                                    )}
-                                </Button>
-
-
-                                <TrustedAvatars dark className="mt-6 justify-center" />
-
-                                {!userLoggedIn && (
-                                    <div className="mt-5 p-5 rounded-[1.5rem] bg-orange-50 border border-orange-100 shadow-sm relative overflow-hidden group">
-                                        <div className="absolute top-0 right-0 w-16 h-16 bg-[#B5451B]/5 rounded-full -mr-6 -mt-6 group-hover:scale-150 transition-transform duration-500" />
-                                        <p className="text-[11px] text-gray-700 leading-relaxed relative z-10 break-words">
-                                            <span className="font-black text-[#B5451B] block mb-1">Guest checkout</span>
-                                            Your details are used only to process this order. Create an account separately to manage future orders online.
-                                        </p>
-                                    </div>
-                                )}
-
-
-
-                                {!userLoggedIn && (
-                                    <p className="mt-4 text-center text-xs text-gray-400 font-medium">
-                                        Already have an account?{" "}
-                                        <Link href="/login" className="text-[#B5451B] font-bold hover:underline">
-                                            Login here
-                                        </Link>
-                                    </p>
-                                )}
-
-                            </div>
+                            <div className="hidden lg:block">{payBlock}</div>
                         </div>
                     </aside>
                 </div>

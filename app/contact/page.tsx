@@ -108,7 +108,7 @@ export default function ContactPage() {
             </div>
 
             <div className="container mx-auto px-4 lg:px-8 py-12 lg:py-16">
-                <div className="grid lg:grid-cols-5 gap-10">
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
 
                     {/* ── Contact Info Sidebar ── */}
                     <div className="lg:col-span-2 space-y-5">

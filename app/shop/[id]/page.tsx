@@ -72,7 +72,7 @@ export default function ProductDetailPage() {
                     </div>
                 </div>
                 <div className="container mx-auto px-4 lg:px-8 py-8 lg:py-10">
-                    <div className="grid lg:grid-cols-2 gap-8 lg:gap-14 mb-14">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 mb-14">
                         <div className="space-y-3">
                             <Skeleton className="aspect-square w-full rounded-[2.5rem]" />
                             <div className="flex gap-4">
@@ -244,7 +244,7 @@ export default function ProductDetailPage() {
             <div className="container mx-auto px-4 lg:px-8 py-8 lg:py-10">
 
                 {/* ── Main Product Layout ── */}
-                <div className="grid lg:grid-cols-2 gap-8 lg:gap-14 mb-14">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 mb-14">
 
                     {/* ── Left: Image Gallery ── */}
                     <div className="space-y-3">
@@ -488,7 +488,7 @@ export default function ProductDetailPage() {
                             <h2 className="text-2xl font-black text-gray-900 tracking-tight">Product Insights</h2>
                         </div>
 
-                        <div className="grid lg:grid-cols-3 gap-12">
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                             <div className="lg:col-span-2">
                                 <h3 className="text-lg font-bold text-gray-900 mb-6">Our Story & Quality Promise</h3>
                                 <div className="prose prose-orange max-w-none text-gray-600 leading-relaxed space-y-4">

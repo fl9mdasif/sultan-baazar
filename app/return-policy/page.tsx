@@ -31,7 +31,7 @@ export default function ReturnPolicyPage() {
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-8 mb-16">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                     {POLICIES.map((policy, index) => (
                         <div key={index} className="bg-white p-8 rounded-2xl shadow-sm border border-[#F0E6D3] text-center">
                             <div className="mb-4 inline-block p-3 bg-orange-50 rounded-xl">
